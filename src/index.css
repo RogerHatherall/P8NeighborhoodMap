@@ -6,10 +6,40 @@ body {
 
 main {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 section {
+  height: 400px;
+  width: 33%;
+  border: 2px solid blue;
+}
+
+.google-map {
+  width: 67%;
+  border: 2px solid blue;
+}
+
+.container-element {
+  height: 400px;
+}
+
+.map-element {
   height: 100%;
-  width: 34%;
+}
+
+.app-footer {
+  height: 80px;
+  background-color: aliceblue;
+  padding: 20px;
+  color: blue;
+}
+
+@media screen and (max-width: 549px) {
+  main {
+    flex-wrap: wrap;
+  }  
+  .app-section, .google-map {
+    width: 100%;
+  }
 }
