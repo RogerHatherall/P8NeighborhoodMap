@@ -12,7 +12,9 @@ class Main extends Component {
 				<Section 
 					hotelsArray={this.props.hotelsArray}
 				/>
-				<Map/>
+				<Map
+					hotelsArray={this.props.hotelsArray}
+				/>
       </main>
 		)
 	}
