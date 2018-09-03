@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Map from '../components/Map.js'
+import HotelMap from '../components/Map.js'
 import Section from '../components/Section.js'
 class Main extends Component {
 
@@ -12,7 +12,7 @@ class Main extends Component {
 				<Section 
 					hotelsArray={this.props.hotelsArray}
 				/>
-				<Map
+				<HotelMap
 					hotelsArray={this.props.hotelsArray}
 				/>
       </main>

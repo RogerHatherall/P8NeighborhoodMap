@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import Pin from '../components/Pin.js'
+import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
+import HotelMarker from "./HotelMarker"
+
 
 class Map extends Component {
 
@@ -9,13 +10,13 @@ class Map extends Component {
     let markers;
     if (this.props.venues !== null) {
       markers = this.props.hotelsArray.map( (marker, i) => {
-      console.log(marker.location.lat);
+      console.log(marker.id);
         return (
-          <Marker
+          <HotelMarker
             key={i}
+            label={marker.id}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             map={{NeighborhoodMap}}
-            visable
           />
         )
       })
@@ -29,6 +30,7 @@ const NeighborhoodMap = withGoogleMap(props => (
         defaultZoom = { 11 }
       >
       	{markers}   
+
       </GoogleMap>
       
    ));
