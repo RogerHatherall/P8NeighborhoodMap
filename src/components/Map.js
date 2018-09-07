@@ -9,12 +9,15 @@ class Map extends Component {
 
     let markers;
     if (this.props.venues !== null) {
-      markers = this.props.hotelsArray.map( (marker, i) => {
+      //markers = this.props.hotelsArray.map( (marker, i) => {
+      markers = this.props.selectedHotels.map( (marker, i) => {
       console.log(marker.id);
         return (
           <HotelMarker
             key={i}
             label={marker.id}
+            name={marker.name}
+            address={marker.location.address}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             map={{NeighborhoodMap}}
           />

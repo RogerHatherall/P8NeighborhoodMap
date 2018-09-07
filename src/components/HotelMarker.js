@@ -10,6 +10,8 @@ class HotelMarker extends React.Component {
 
   toggleOpen = () => {
     console.log("marker clicked is " + this.props.label)
+    console.log("address " + this.props.address)
+
     if (this.state.infoBoxOpened){
       this.setState({infoBoxOpened: false})
       this.setState({clickedMarker: null})
@@ -32,7 +34,8 @@ class HotelMarker extends React.Component {
         { this.state.infoBoxOpened && this.state.clickedMarker === this.props.label ?
           <InfoWindow maxWidth={800} onCloseClick={this.toggleOpen}>
             <div>
-              info InfoWindow
+              <h3>{this.props.name}</h3>
+              <p>{this.props.address}</p>
             </div>
           </InfoWindow> : null
         }

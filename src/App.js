@@ -12,7 +12,7 @@ class App extends Component {
     hotelsLoaded: false
   }
 
-  componentWillMount () {
+  componentDidMount () {
     helperFunctions.getVenues()
     .then(response => response.json())
     .then(res => {
