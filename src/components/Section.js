@@ -40,7 +40,9 @@ componentDidUpdate () {
 						//this.props.hotelsArray
 						this.props.selectedHotels
 							.map(hotel => (
-								<li key={hotel.id}>
+								<li key={hotel.id}
+								value={hotel.name}
+								onClick={this.props.onItemClickHandler}>
 										{hotel.name}
 								</li>
 							))

@@ -6,7 +6,8 @@ class Main extends Component {
 
 	constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.onItemClickHandler = this.onItemClickHandler.bind(this)
   }
 
 //hotelsArray = this.props.hotelsArray;
@@ -20,7 +21,7 @@ componentWillMount () {
 	this.setState({selectedHotels: this.props.hotelsArray})
 }
 
-handleChange = (event) => {
+/*handleChange = (event) => {
 	let match = new RegExp(escapeRegExp(event.target.value.trim()), 'i')
 	console.log("match is " + match)
 	let matchingHotels = this.props.hotelsArray.filter((hotel) => match.test(hotel.name))
@@ -38,13 +39,54 @@ handleChange = (event) => {
 	}
 }
 
-	render() {
+onItemClickHandler = (event) => {
+	console.log("test");
+	console.log(event.target.innerText);
+	//this.handleChange(event.target)
+}*/
 
+handleChange = (event) => {
+	let match = new RegExp(escapeRegExp(event.target.value.trim()), 'i')
+	console.log("match is " + match)
+	let matchingHotels = this.props.hotelsArray.filter((hotel) => match.test(hotel.name))
+	console.log("matchingHotels is " + JSON.stringify(matchingHotels))
+	this.setSelectedHotels(matchingHotels)
+}
+
+onItemClickHandler = (event) => {
+	console.log("test")
+	console.log(event.target.innerText)
+	//let clickedHotel = [] 
+	let match = new RegExp(escapeRegExp(event.target.innerText.trim()), 'i')
+	let clickedHotel = this.props.hotelsArray.filter((hotel) => match.test(hotel.name))
+	//clickedHotel.push(event.target.innerText)
+	//this.handleChange(event.target)
+	console.log("clickedHotel is " + clickedHotel)
+	this.setSelectedHotels(clickedHotel)
+}
+
+setSelectedHotels = (hotels) => {
+	console.log("hotels in setSelectedHotels are " + hotels)
+	if (hotels.length > 0) {
+		this.setState({selectedHotels: hotels},
+			() => {console.log('selected hotels are '+ this.state.selectedHotels)
+		})
+	} else {
+		this.setState({selectedHotels: null},
+			//() => {console.log('selected hotels are '+ this.state.selectedHotels)
+			() => {console.log('selected hotels are '+ this.props.hotelsArray)
+		})
+	}
+}
+
+	render() {
+		console.log("calling render in main " + this.state.selectedHotels)
 		return(
 			<main className="app-main">
 				<Section 
 					//hotelsArray={this.props.hotelsArray}
 					handleChange={this.handleChange}
+					onItemClickHandler={this.onItemClickHandler}
 					selectedHotels={this.state.selectedHotels}
 
 				/>
