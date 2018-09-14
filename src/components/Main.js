@@ -8,13 +8,15 @@ class Main extends Component {
     super(props);
 		this.handleChange = this.handleChange.bind(this);
 		this.onItemClickHandler = this.onItemClickHandler.bind(this)
+		this.closeModal = this.closeModal.bind(this);
   }
 
 //hotelsArray = this.props.hotelsArray;
 //const match = new RegExp(escapeRegExp(query), 'i')
 //showingContacts = contacts.filter((contact) => match.test(contact.name))
 state = {
-	selectedHotels: []
+	selectedHotels: [],
+	showModal: false
 }
 
 componentWillMount () {
@@ -65,18 +67,50 @@ onItemClickHandler = (event) => {
 	this.setSelectedHotels(clickedHotel)
 }
 
-setSelectedHotels = (hotels) => {
+/*setSelectedHotels = (hotels) => {
 	console.log("hotels in setSelectedHotels are " + hotels)
 	if (hotels.length > 0) {
-		this.setState({selectedHotels: hotels},
+		this.setState({selectedHotels: hotels,
+									 showModal: true},
 			() => {console.log('selected hotels are '+ this.state.selectedHotels)
 		})
 	} else {
-		this.setState({selectedHotels: null},
+		this.setState({selectedHotels: null,
+									 showModal: false},
 			//() => {console.log('selected hotels are '+ this.state.selectedHotels)
 			() => {console.log('selected hotels are '+ this.props.hotelsArray)
 		})
 	}
+}*/
+
+setSelectedHotels = (hotels) => {
+	console.log("hotels in setSelectedHotels are " + hotels)
+	switch (hotels.length) {
+		case 0: //none selected: show all of them without modal window
+			this.setState({selectedHotels: this.props.hotelsArray,
+										showModal: false},
+				() => {console.log('selected hotels are '+ this.state.selectedHotels)
+			})
+			break;	
+		case 1: //one selected: show it with modal window
+			this.setState({selectedHotels: hotels,
+										showModal: true},
+				() => {console.log('selected hotels are '+ this.state.selectedHotels)
+			})
+			break;
+		default: //more than one selected: show them without modal window 
+			this.setState({selectedHotels: hotels,
+										showModal: false},
+				//() => {console.log('selected hotels are '+ this.state.selectedHotels)
+				() => {console.log('selected hotels are '+ this.state.selectedHotels)
+			})
+	}
+}
+
+closeModal = () => {
+	console.log("button clicked")
+	this.setState({selectedHotels: this.props.hotelsArray,
+								 showModal: false})
 }
 
 	render() {
@@ -88,11 +122,13 @@ setSelectedHotels = (hotels) => {
 					handleChange={this.handleChange}
 					onItemClickHandler={this.onItemClickHandler}
 					selectedHotels={this.state.selectedHotels}
-
+					showModal={this.state.showModal}
+					closeModal={this.closeModal}
 				/>
 				<HotelMap
 					//hotelsArray={this.props.hotelsArray}
 					selectedHotels={this.state.selectedHotels}
+					showModal={this.state.showModal}
 				/>
       </main>
 		)

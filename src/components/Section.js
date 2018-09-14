@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
+import Modal from './Modal';
 
 class Section extends Component {
 
 	constructor(props) {
-    super(props);
+		super(props);
+		//this.state = { isOpen: false };
 	}
+
+/*	toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }*/
 	
 /*	state = {
 		displayedHotelsArray: []
@@ -25,6 +33,7 @@ componentDidUpdate () {
 	render() {
 
 		console.log("onChange " + this.props.handleChange)
+		console.log("section showModal is " + this.props.showModal)
 		
 		return(
 			<section className="app-section">
@@ -48,6 +57,10 @@ componentDidUpdate () {
 							))
 					}
 				</ol>
+				<Modal 
+					showModal={this.props.showModal}
+          closeModal={this.props.closeModal}>
+        </Modal>
       </section>
 		)
 	}

@@ -49,3 +49,10 @@ section {
     width: 100%;
   }
 }
+
+.modal-window {
+  height: 200px;
+  width: 80%;
+  border: 2px solid blue;
+  margin: 10%;
+}

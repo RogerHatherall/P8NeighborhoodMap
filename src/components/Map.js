@@ -1,3 +1,4 @@
+/*global google*/
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import HotelMarker from "./HotelMarker"
@@ -20,6 +21,7 @@ class Map extends Component {
             address={marker.location.address}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             map={{NeighborhoodMap}}
+            animation = {this.props.showModal? google.maps.Animation.BOUNCE : google.maps.Animation.DROP }
           />
         )
       })
