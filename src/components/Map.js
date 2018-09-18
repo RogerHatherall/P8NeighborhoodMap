@@ -17,8 +17,9 @@ class Map extends Component {
           <HotelMarker
             key={i}
             label={marker.id}
-            name={marker.name}
+            name={marker.name.replace("Swindon","")}
             address={marker.location.address}
+            city={marker.location.city}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             map={{NeighborhoodMap}}
             animation = {this.props.showModal? google.maps.Animation.BOUNCE : google.maps.Animation.DROP }

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import HotelMap from '../components/Map.js'
 import Section from '../components/Section.js'
 import escapeRegExp from 'escape-string-regexp'
+import * as helperFunctions from '../helperFunctions';
 class Main extends Component {
 
 	constructor(props) {
@@ -16,7 +17,8 @@ class Main extends Component {
 //showingContacts = contacts.filter((contact) => match.test(contact.name))
 state = {
 	selectedHotels: [],
-	showModal: false
+	showModal: false,
+	streetViewURL: ''
 }
 
 componentWillMount () {
@@ -89,22 +91,36 @@ setSelectedHotels = (hotels) => {
 		case 0: //none selected: show all of them without modal window
 			this.setState({selectedHotels: this.props.hotelsArray,
 										showModal: false},
-				() => {console.log('selected hotels are '+ this.state.selectedHotels)
+				() => {console.log('selected hotels are '+ this.state.selectedHotels.name)
 			})
 			break;	
 		case 1: //one selected: show it with modal window
 			this.setState({selectedHotels: hotels,
 										showModal: true},
-				() => {console.log('selected hotels are '+ this.state.selectedHotels)
-			})
+				() => {console.log('selected hotel is '+ this.state.selectedHotels[0].name)
+							this.getStreetViewURL()})
 			break;
 		default: //more than one selected: show them without modal window 
 			this.setState({selectedHotels: hotels,
 										showModal: false},
 				//() => {console.log('selected hotels are '+ this.state.selectedHotels)
-				() => {console.log('selected hotels are '+ this.state.selectedHotels)
+				() => {console.log('selected hotels are '+ this.state.selectedHotels.name)
 			})
 	}
+}
+
+getStreetViewURL = () => {
+	let streetViewURLvar
+	let lat = this.state.selectedHotels[0].location.lat
+	let lng = this.state.selectedHotels[0].location.lng
+	console.log("lat= " + lat + " lng= " + lng)
+	streetViewURLvar = helperFunctions.getStreetView(lat, lng)
+	console.log("streetViewURLvar= " + streetViewURLvar)
+	this.setState({streetViewURL: streetViewURLvar},
+		() => {console.log('ss streetViewURL ' + this.state.streetViewURL)
+	})
+//	.catch(error => {
+//			console.log('Error while getting photo', error)})
 }
 
 closeModal = () => {
@@ -124,6 +140,7 @@ closeModal = () => {
 					selectedHotels={this.state.selectedHotels}
 					showModal={this.state.showModal}
 					closeModal={this.closeModal}
+					streetViewURL={this.state.streetViewURL}
 				/>
 				<HotelMap
 					//hotelsArray={this.props.hotelsArray}

@@ -39,6 +39,7 @@ section {
 .hotel-list {
   list-style: none;
   text-align: left;
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 549px) {

@@ -35,8 +35,9 @@ class HotelMarker extends React.Component {
         { this.state.infoBoxOpened && this.state.clickedMarker === this.props.label ?
           <InfoWindow maxWidth={800} onCloseClick={this.toggleOpen}>
             <div>
-              <h3>{this.props.name}</h3>
+              <h4>{this.props.name}</h4>
               <p>{this.props.address}</p>
+              <p>{this.props.city}</p>
             </div>
           </InfoWindow> : null
         }
