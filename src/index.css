@@ -10,7 +10,7 @@ main {
 }
 
 section {
-  height: 400px;
+  height: 600px;
   width: 33%;
   border: 2px solid blue;
 }
@@ -21,7 +21,7 @@ section {
 }
 
 .container-element {
-  height: 400px;
+  height: 600px;
 }
 
 .map-element {
@@ -51,9 +51,34 @@ section {
   }
 }
 
+@media screen and (min-width: 550px) and (max-width: 900px){
+  .app-section, .google-map {
+    width: 50%;
+  }
+}
+
+
 .modal-window {
-  height: 200px;
-  width: 80%;
+  height: 350px;
+  width: 290px;
   border: 2px solid blue;
-  margin: 10%;
+  margin: auto;
+}
+
+.photo-figure {
+  border: 2px solid red;
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  display: flex;
+}
+
+img {
+  object-fit: contain;
+  object-position: 0 0;
+  flex: 1;
+}
+
+button {
+  margin-top: 10px;
 }
